@@ -31,6 +31,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEm
 import com.siot.iamportsdk.KakaoWebViewClient;
 import com.siot.iamportsdk.NiceWebViewClient;
 import com.siot.iamportsdk.PaycoWebViewClient;
+import com.siot.iamportsdk.KcpWebViewClient;
 
 public class IAmPortViewManager extends SimpleViewManager<IAmPortWebView> {
 
@@ -115,7 +116,6 @@ public class IAmPortViewManager extends SimpleViewManager<IAmPortWebView> {
         Log.i("iamport", "PG - " + pg);
 
         if(pg.equals("nice")){
-
           NiceWebViewClient webViewClient = new NiceWebViewClient(activity, view, new UrlLoadingCallBack() {
 
             @Override
@@ -126,12 +126,10 @@ public class IAmPortViewManager extends SimpleViewManager<IAmPortWebView> {
 
           });
           view.setWebViewClient(webViewClient);
-        }
-        else if(pg.equals("kakao")){
+        } else if(pg.equals("kakao")){
 
             view.setWebViewClient(new KakaoWebViewClient(activity, view));
-        }
-        else if(pg.equals("payco")){
+        } else if(pg.equals("payco")){
           PaycoWebViewClient webViewClient = new PaycoWebViewClient(activity, view, new UrlLoadingCallBack() {
 
             @Override
@@ -142,6 +140,10 @@ public class IAmPortViewManager extends SimpleViewManager<IAmPortWebView> {
 
           });
           view.setWebViewClient(webViewClient);
+        } else {
+            // KCP and else
+            KcpWebViewClient webViewClient = new KcpWebViewClient(activity, view);
+            view.setWebViewClient(webViewClient);
         }
     }
 
