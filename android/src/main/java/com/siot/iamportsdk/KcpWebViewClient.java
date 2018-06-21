@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -15,6 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.jeongjuwon.iamport.UrlLoadingCallBack;
+
 /**
  * from https://github.com/iamport/kcp-android-graddle/blob/master/app/src/main/java/kr/iamport/sdk/KcpWebViewClient.java
  * Created by jang on 2017. 9. 14..
@@ -25,15 +28,18 @@ public class KcpWebViewClient extends WebViewClient {
     private Activity activity;
     private WebView target;
     final String KTFC_PACKAGE = "com.kftc.bankpay.android";
+    UrlLoadingCallBack mCallBack;
 
-    public KcpWebViewClient(Activity activity, WebView target) {
+    public KcpWebViewClient(Activity activity, WebView target, UrlLoadingCallBack callBack) {
         this.activity = activity;
         this.target = target;
+        this.mCallBack = callBack;
     }
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Log.i("iamport", "KcpWebViewClient.shouldOverrideUrlLoading - " + url);
+        mCallBack.shouldOverrideUrlLoadingCallBack(url);
 
         if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("javascript:")) {
             Intent intent = null;

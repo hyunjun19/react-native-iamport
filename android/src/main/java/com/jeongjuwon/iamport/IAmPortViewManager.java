@@ -141,7 +141,13 @@ public class IAmPortViewManager extends SimpleViewManager<IAmPortWebView> {
           });
           view.setWebViewClient(webViewClient);
         } else if(pg.equals("kcp")){
-            KcpWebViewClient webViewClient = new KcpWebViewClient(activity, view);
+            KcpWebViewClient webViewClient = new KcpWebViewClient(activity, view, new UrlLoadingCallBack() {
+                @Override
+                public void shouldOverrideUrlLoadingCallBack(String s) {
+                    Log.i("iamport", "KcpWebViewClient.shouldOverrideUrlLoadingCallBack - " + s);
+                    emitPaymentEvent(s, s, s);
+                }
+            });
             view.setWebViewClient(webViewClient);
         } else {
             CallbackWebViewClient defaultWebViewClient = new CallbackWebViewClient(activity, view, new UrlLoadingCallBack() {
