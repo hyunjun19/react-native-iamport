@@ -140,9 +140,9 @@ public class IAmPortViewManager extends SimpleViewManager<IAmPortWebView> {
 
           });
           view.setWebViewClient(webViewClient);
-        // } else if(pg.equals("kcp")){
-        //     KcpWebViewClient webViewClient = new KcpWebViewClient(activity, view);
-        //     view.setWebViewClient(webViewClient);
+        } else if(pg.equals("kcp")){
+            KcpWebViewClient webViewClient = new KcpWebViewClient(activity, view);
+            view.setWebViewClient(webViewClient);
         } else {
             CallbackWebViewClient defaultWebViewClient = new CallbackWebViewClient(activity, view, new UrlLoadingCallBack() {
                 @Override
