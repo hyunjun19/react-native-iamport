@@ -32,6 +32,7 @@ import com.siot.iamportsdk.KakaoWebViewClient;
 import com.siot.iamportsdk.NiceWebViewClient;
 import com.siot.iamportsdk.PaycoWebViewClient;
 import com.siot.iamportsdk.KcpWebViewClient;
+import com.siot.iamportsdk.CallbackWebViewClient;
 
 public class IAmPortViewManager extends SimpleViewManager<IAmPortWebView> {
 
