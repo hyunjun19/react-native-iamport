@@ -33,6 +33,7 @@ public class KcpWebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        Log.i("iamport", "KcpWebViewClient.shouldOverrideUrlLoading - " + url);
 
         if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("javascript:")) {
             Intent intent = null;
